@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 app.use(express.json())
 const mongoose = require('mongoose')
+const router = require('./src/route')
 
 mongoose.connect('mongodb://localhost:27017').then(() => {
     console.log("mongodb is connected")
@@ -9,7 +10,7 @@ mongoose.connect('mongodb://localhost:27017').then(() => {
     console.log(err)
 })
 
-
+app.use("/" , router)
 
 const PORT = 3000
 app.listen(PORT, () => {

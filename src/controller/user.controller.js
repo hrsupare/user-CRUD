@@ -1,10 +1,27 @@
 const { userModel } = require("../model/user.model");
 
- 
 
-//helper || callback function
- function createUser (req , res) {
-    //database call with the help ogf model == usermodel
-    // user ==> firstname , lastname  req.body
-    // usermodel.create({firstname , lastname})
- }
+
+async function getAllUser(req, res) {
+   const data = await userModel.find()
+   return res.send({ data: data })
+}
+
+async function createUser(req, res) {
+   const data = req.body
+   const create = await userModel.create(data)
+   console.log(create)
+   return res.send({ data: create })
+}
+
+
+async function findUserByID(req, res) {
+   const params = req.params
+  console.log(params.ID)
+   const user = await userModel.findById(params.ID)
+   console.log(user)
+   return res.send({ data: user })
+}
+
+
+module.exports = { getAllUser, createUser, findUserByID }

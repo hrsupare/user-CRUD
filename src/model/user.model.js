@@ -3,11 +3,10 @@
 const mongoose = require('mongoose')
 
 const user = mongoose.Schema({
-    firstName : String,
-    lastName:String
+    firstName: String,
+    lastName: String, 
+    email :String
 })
-
-export const userModel = mongoose.model('User', user);
-
-
+const userModel = mongoose.model('User', user);
+module.exports = { userModel }
 
